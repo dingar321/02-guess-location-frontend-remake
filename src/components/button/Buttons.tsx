@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 import { Button } from '@mui/material';
-import { color } from '@mui/system';
-import React from 'react';
 
 const TextButton = styled(Button)(({ width, height, color }:
 	{ width: number, height: number, color: string }) => ({
@@ -25,8 +23,8 @@ const TextButton = styled(Button)(({ width, height, color }:
 	}));
 
 
-const OutlinedButton = styled(Button)(({ width, height, textColor }:
-	{ width: number, height: number, textColor: string }) => ({
+const OutlinedButton = styled(Button)(({ width, height, color }:
+	{ width: number, height: number, color: string }) => ({
 		/* Button/Contained */
 		/* Const's */
 		borderRadius: '4px',
@@ -42,13 +40,13 @@ const OutlinedButton = styled(Button)(({ width, height, textColor }:
 		/* Dynamic's  */
 		width: width,
 		height: height,
-		color: textColor,
+		color: color,
 
 	}));
 
 
-const ContainedButton = styled(Button)(({ width, height, background }:
-	{ width: number, height: number, background: string }) => ({
+const ContainedButton = styled(Button)(({ width, height, color }:
+	{ width: number, height: number, color: string }) => ({
 		/* Button/Contained */
 		/* Const's */
 		borderRadius: '4px',
@@ -67,8 +65,8 @@ const ContainedButton = styled(Button)(({ width, height, background }:
 		/* Dynamic's  */
 		width: width,
 		height: height,
-		background: background,
+		background: color,
 
 	}));
 
-export { TextButton, OutlinedButton, ContainedButton }
+export { TextButton, OutlinedButton, ContainedButton };
