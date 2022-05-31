@@ -100,7 +100,7 @@ const Theme = createTheme({
 		},
 		h5: {
 			/* Header 5 */
-			fontWeight: 'regular',
+			fontWeight: '400',
 			fontSize: '24px'
 		},
 		body: {
@@ -178,8 +178,8 @@ const Theme = createTheme({
 	breakpoints: {
 		values: {
 			xs: 0,
-			sm: 600,
-			md: 1000,
+			sm: 0,
+			md: 800,
 			lg: 1200,
 			xl: 1500,
 		},
