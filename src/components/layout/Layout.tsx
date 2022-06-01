@@ -23,7 +23,6 @@ const AppBox = styled(Box)({
 
 const PageContainer = styled(Container)({
 	background: 'wheat',
-
 	marginBottom: '2em',
 	//marginTop: '2em' <-- Not really needed
 });

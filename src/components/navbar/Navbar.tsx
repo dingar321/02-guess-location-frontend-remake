@@ -1,5 +1,5 @@
 
-import { Box, Divider, SwipeableDrawer, Typography } from '@mui/material';
+import { Box, Divider, SwipeableDrawer, Typography, useMediaQuery } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { LogoFull } from '../../assets/logos/Logos';
 import HamburgerChevronButton from '../buttons/HamburgerChevronButton';
@@ -13,20 +13,21 @@ import { ContainedButton, ContentBox, HamContainedButton, HamContentBox, HamOutl
 const Navbar = () => {
 
 	const [loggedUser, setLoggedUser] = useState<boolean>(true);
-	const [formPage, setFormPage] = useState<boolean>(false);
+	const [formPage, setFormPage] = useState<boolean>(true);
 
 	//Opening and closing the burger menu
 	const [openBurgerMenu, setOpenBurgerMenu] = useState<boolean>(false);
 
+	//Checks the window width  
+	const matches = useMediaQuery("(min-width: 850px)");
+
 	useEffect(() => {
-		/* Check if the screen with is greater than 800px, if it is close it */
-		const x = window.matchMedia("(max-width: 800px)")
-		function myFunction(e: any) {
+
+		if (matches) {
 			setOpenBurgerMenu(false);
-		};
-		x.addListener(myFunction)
-		return () => x.removeListener(myFunction);
-	}, []);
+		}
+
+	}, [matches]);
 
 	return (
 

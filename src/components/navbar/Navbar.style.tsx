@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material';
+import { AppBar, Box, Button, Toolbar } from '@mui/material';
 
 const NavbarToolbar = styled(Toolbar)({
 	display: 'flex',

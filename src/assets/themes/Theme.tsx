@@ -32,35 +32,6 @@ const primaryColor = '#619B8A';
 const secondaryColor = '#233D4D';
 const buttonHoverColor = '#FE7F2D';
 
-
-/*
-//INSTRUCTIONS ON HOW TO USE:
-The whole application has a theme. That means we have 2 colors, 8 typography styles and 3 distinct buttns.
-To use the typography and button styles use the respective component and specify the variant.
-If we want to use their colors we only have to add (color: 'palette') to the component to specify which. 
-*/
-
-/*  Typography example on how to use
-<Typography variant='body' color='primary'>
-	I am a body with the primary color !
-</Typography>
-*/
-
-/*  Button example on how to use (IMPORTANT: use 'disableRipple' inside the button component's)
-<Button variant='contained' color='primary'>
-	I am a contained Button
-</Button>
-
-<Button  variant='outlined' color='primary'>
-	I am a outlined button
-</Button>
-
-<Button style variant='text' color='secondary'>
-	I am a text button
-</Button>
-*/
-
-
 //Default font of the website
 const Theme = createTheme({
 
@@ -179,7 +150,7 @@ const Theme = createTheme({
 		values: {
 			xs: 0,
 			sm: 0,
-			md: 800,
+			md: 850,
 			lg: 1200,
 			xl: 1500,
 		},
@@ -188,3 +159,31 @@ const Theme = createTheme({
 } as ThemeOptions)
 
 export default Theme;
+
+
+/*
+//INSTRUCTIONS ON HOW TO USE:
+The whole application has a theme. That means we have 2 colors, 8 typography styles and 3 distinct buttns.
+To use the typography and button styles use the respective component and specify the variant.
+If we want to use their colors we only have to add (color: 'palette') to the component to specify which. 
+*/
+
+/*  Typography example on how to use
+<Typography variant='body' color='primary'>
+	I am a body with the primary color !
+</Typography>
+*/
+
+/*  Button example on how to use (IMPORTANT: use 'disableRipple' inside the button component's)
+<Button variant='contained' color='primary'>
+	I am a contained Button
+</Button>
+
+<Button  variant='outlined' color='primary'>
+	I am a outlined button
+</Button>
+
+<Button style variant='text' color='secondary'>
+	I am a text button
+</Button>
+*/
