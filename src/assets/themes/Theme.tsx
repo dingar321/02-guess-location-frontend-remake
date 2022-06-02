@@ -12,7 +12,6 @@ declare module '@mui/material/Typography' {
 	}
 }
 
-
 interface ExtendedTypographyOptions extends TypographyOptions {
 	body: React.CSSProperties;
 	bodyB: React.CSSProperties;
@@ -28,9 +27,16 @@ declare module "@mui/material/Button" {
 	}
 }
 
-const primaryColor = '#619B8A';
-const secondaryColor = '#233D4D';
-const buttonHoverColor = '#FE7F2D';
+const primaryColor = '#619B8A'; //<-- Primary color
+const secondaryColor = '#233D4D';  //<-- Secondary color
+const buttonHoverColor = '#FE7F2D';  //<-- Button hover color
+
+/* TODO Implement: 
+
+const placeholderColor = 'grey';  //<-- Grey placeholder color
+
+
+*/
 
 //Default font of the website
 const Theme = createTheme({
@@ -51,42 +57,42 @@ const Theme = createTheme({
 	typography: {
 		h1: {
 			/* Header 1 */
-			fontWeight: 'light',
+			fontWeight: 300,
 			fontSize: '96px'
 		},
 		h2: {
 			/* Header 2 */
-			fontWeight: 'light',
+			fontWeight: 300,
 			fontSize: '60px'
 		},
 		h3: {
 			/* Header 3 */
-			fontWeight: 'regular',
+			fontWeight: 500,
 			fontSize: '48px'
 		},
 		h4: {
 			/* Header 4 */
-			fontWeight: 'regular',
+			fontWeight: 400,
 			fontSize: '34px'
 		},
 		h5: {
 			/* Header 5 */
-			fontWeight: '400',
+			fontWeight: 400,
 			fontSize: '24px'
 		},
 		body: {
 			/* body */
-			fontWeight: 'regular',
+			fontWeight: 400,
 			fontSize: '16px'
 		},
 		bodyB: {
 			/* Body (Bold) */
-			fontWeight: 'bold',
+			fontWeight: 500,
 			fontSize: '16px'
 		},
 		/* caption */
 		cap: {
-			fontWeight: 'normal',
+			fontWeight: 400,
 			fontSize: '12px'
 		}
 	} as ExtendedTypographyOptions,
@@ -150,8 +156,8 @@ const Theme = createTheme({
 		values: {
 			xs: 0,
 			sm: 0,
-			md: 850,
-			lg: 1200,
+			md: 1000,
+			lg: 1400,
 			xl: 1500,
 		},
 	},

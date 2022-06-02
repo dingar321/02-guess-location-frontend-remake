@@ -12,14 +12,14 @@ import { ContainedButton, ContentBox, HamContainedButton, HamContentBox, HamOutl
 
 const Navbar = () => {
 
-	const [loggedUser, setLoggedUser] = useState<boolean>(true);
-	const [formPage, setFormPage] = useState<boolean>(true);
+	const [loggedUser, setLoggedUser] = useState<boolean>(false);
+	const [formPage, setFormPage] = useState<boolean>(false);
 
 	//Opening and closing the burger menu
 	const [openBurgerMenu, setOpenBurgerMenu] = useState<boolean>(false);
 
 	//Checks the window width  
-	const matches = useMediaQuery("(min-width: 850px)");
+	const matches = useMediaQuery("(min-width: 1000px)");
 
 	useEffect(() => {
 

@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 import { Box, Grid, useMediaQuery } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import React from 'react';
 import { RightSideImage } from '../assets/images/Images';
 import SigninForm from '../components/forms/signin/SigninForm';
 import Navbar from '../components/navbar/Navbar';
-
 
 const SigninFormGrid = styled(Grid)({
 	height: '100vh',
@@ -16,7 +15,7 @@ const SigninFormGrid = styled(Grid)({
 
 const Signin = () => {
 	//Checks the window width  
-	const matches = useMediaQuery("(min-width: 850px)");
+	const matches = useMediaQuery("(min-width: 1000px)");
 
 	return (
 		<Grid container={matches}>

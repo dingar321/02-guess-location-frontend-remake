@@ -1,30 +1,45 @@
-import { Person } from '@mui/icons-material';
+import { Person, Upload } from '@mui/icons-material';
 import { Avatar, Box, IconButton, styled } from '@mui/material'
 import React, { useState } from 'react'
-
-const AvatarPlaceholder = styled(Avatar)({
-	background: '#BDBDBD',
-});
 
 const ProfileIcon = ({ width, height }:
 	{ width: number, height: number }) => {
 
-	const [loggedUser, setLoggedUser] = useState<boolean>(false);
+	const [loggedUser, setLoggedUser] = useState<boolean>(false); //<-- Use this for the profile image !
+
+	const ProfileImageBox = styled(Box)({
+		cursor: 'pointer',
+		borderRadius: '50%',
+	});
+
+	const AvatarIcon = styled(Avatar)({
+		borderRadius: '50%',
+
+		width: width,
+		height: height,
+
+		background: '#BDBDBD',
+		color: 'white',
+	});
 
 	return (
-		<Box style={{ cursor: 'pointer' }}>
+		<ProfileImageBox>
+
 			{((loggedUser === false)) &&
-				<AvatarPlaceholder alt='profile'
-					style={{ width: width, height: height }}>
+				/* If the user is not logged id display: 'placeholder profile' image */
+				<AvatarIcon>
 					<Person />
-				</AvatarPlaceholder>
+				</AvatarIcon>
 			}
 
 			{((loggedUser === true)) &&
-				<Avatar alt='profile' src='https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg'
-					style={{ width: width, height: height }} />
+				/* If the user is logged in display: 'Users profile image' */
+				<AvatarIcon alt='profile' src='https://image.shutterstock.com/image-photo/young-man-checking-his-sports-600w-1373615606.jpg'>
+					{/* Uploaded profile image */}
+				</AvatarIcon>
 			}
-		</Box >
+
+		</ProfileImageBox >
 	)
 }
 

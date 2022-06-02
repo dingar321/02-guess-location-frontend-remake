@@ -10,8 +10,6 @@ const HamProfilBox = styled(Box)({
 	alignItems: 'center',
 
 	width: '350px',
-
-
 });
 
 const Button = styled(IconButton)({
@@ -21,7 +19,6 @@ const Button = styled(IconButton)({
 	'&:hover': {
 		backgroundColor: "#E7E7E7"
 	},
-
 
 	width: '100%',
 
