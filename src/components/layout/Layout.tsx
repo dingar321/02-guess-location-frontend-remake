@@ -22,7 +22,7 @@ const AppBox = styled(Box)({
 });
 
 const PageContainer = styled(Container)({
-	background: 'wheat',
+
 	marginBottom: '2em',
 	//marginTop: '2em' <-- Not really needed
 });
@@ -33,7 +33,7 @@ const Layout = ({ children }:
 		<AppBox>
 			<Box>
 				<Navbar />
-				<PageContainer maxWidth="lg">
+				<PageContainer maxWidth='xl'>
 					{children}
 				</PageContainer>
 			</Box>
