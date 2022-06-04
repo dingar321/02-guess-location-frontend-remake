@@ -1,12 +1,8 @@
-import { Leaderboard } from '@mui/icons-material'
-import { Box, Grid, styled, Typography } from '@mui/material'
+import { Box, styled, Typography } from '@mui/material'
 import React from 'react'
-import GuessCard from '../components/cards/guess/GuessCard'
-import LeaderboardCard from '../components/cards/leaderboard/LeaderboardCard'
-import LocationCard from '../components/cards/location/LocationCard'
 import HeroSection from '../components/hero/HeroSection'
 import Layout from '../components/layout/Layout'
-
+import LocationPagination from '../components/pagination/location/LocationPagination'
 
 const LocationCardsHeaderBox = styled(Box)({
 	textAlign: 'center',
@@ -14,7 +10,6 @@ const LocationCardsHeaderBox = styled(Box)({
 	paddingTop: 750
 
 })
-
 
 const Home = () => {
 	return (
@@ -31,6 +26,9 @@ const Home = () => {
 					Try to guess the location of image by selecting position on the map. When you guess it, it gives you the error distance.
 				</Typography>
 			</LocationCardsHeaderBox>
+
+			{/* Showcase  */}
+			<LocationPagination />
 
 		</Layout >
 	)
