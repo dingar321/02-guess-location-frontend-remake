@@ -33,12 +33,17 @@ const HeroSection = () => {
 					<HeroDescriptionDevice variant='body' color='secondary'>
 						Geotagger is website that allows you to post picture and tag it on the map. Other user than try to locate it via Google Maps.
 					</HeroDescriptionDevice>
+
 				</Box>
-				<HeroButton variant='contained' disableRipple color='primary'>
-					SIGN UP
-				</HeroButton>
+				<Box>
+					<HeroButton variant='contained' disableRipple color='primary'>
+						SIGN UP
+					</HeroButton>
+				</Box>
 				<HeroImageDevice src={WorldMap} />
 			</HeroGridDevice>
+
+
 
 		</HeroContainer>
 	);

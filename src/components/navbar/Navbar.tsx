@@ -10,6 +10,7 @@ import MenuIcon from '../icons/MenuIcon';
 import ProfileIcon from '../icons/ProfileIcon';
 import { ContainedButton, ContentBox, HamContainedButton, HamContentBox, HamOutlinedButton, Nav, NavbarToolbar, TextButton } from './Navbar.style';
 
+//Can change from static to sticky for a navbar that follows you around!
 const Navbar = () => {
 
 	const [loggedUser, setLoggedUser] = useState<boolean>(false);
@@ -31,7 +32,7 @@ const Navbar = () => {
 
 	return (
 
-		<Nav position='sticky' elevation={0}>
+		<Nav position='static' elevation={0}>
 
 			{((formPage === false)) &&
 				/* Default navbar style (Shows on all of the pages) */

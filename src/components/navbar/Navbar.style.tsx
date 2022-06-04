@@ -14,6 +14,7 @@ const NavbarToolbar = styled(Toolbar)({
 
 const Nav = styled(AppBar)({
 	background: 'white',
+	marginTop: '20px' //<--  space from top to navbar
 });
 
 const ContentBox = styled(Box)({

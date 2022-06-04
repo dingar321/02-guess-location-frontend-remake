@@ -63,13 +63,13 @@ const HeroHeaderDevice = styled(Typography)({
 	marginBottom: '20px',
 });
 
+
 const HeroDescriptionDevice = styled(Typography)({
 
 });
 
 const HeroImageDevice = styled('img')({
-
-	width: '100%',
+	width: '80%', //<-- keep at 80% for best results
 	height: 'auto'
 });
 
@@ -84,5 +84,5 @@ const HeroButton = styled(Button)({
 export {
 	HeroContainer, HeroGridBrowser, HeroImageBrowser, HeroGreetingBrowser,
 	HeroHeaderBrowser, HeroDescriptionBrowser, HeroGridDevice, HeroImageDevice,
-	HeroHeaderDevice, HeroDescriptionDevice, HeroButton
+	HeroHeaderDevice, HeroDescriptionDevice, HeroButton,
 };
