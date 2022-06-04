@@ -1,10 +1,7 @@
 import { Clear, Edit } from '@mui/icons-material';
-import { Box, CardActionArea, IconButton, styled } from '@mui/material';
 import React, { useState } from 'react';
 import {
-	IconButtonBox,
-	IconButtonCard,
-	LocationCardBox, LocationCardButton,
+	IconButtonBox, IconButtonCard, LocationCardBox, LocationCardButton,
 	LocationCardMedia, LockedLocationCardBox, LockIcon
 } from './LocationCard.style';
 
@@ -19,7 +16,7 @@ const LocationCard = ({ width, height, }:  //<--- We are also going to recieve a
 	const [profilePage, serProfilePage] = useState<boolean>(false);
 
 	//Placeholder, when the real data is introducet replace with the Location object
-	const ImageSRC = 'https://scandinaviantraveler.com/sites/default/files/styles/facebook_share/public/paris-momontmartre-1140x619.png?itok=-VCuhabT';
+	const imageURL = 'https://scandinaviantraveler.com/sites/default/files/styles/facebook_share/public/paris-momontmartre-1140x619.png?itok=-VCuhabT';
 
 	return (
 		<>
@@ -29,10 +26,10 @@ const LocationCard = ({ width, height, }:  //<--- We are also going to recieve a
 					{((loggedUser === false)) &&
 						//User is NOT logged (show a card with a lock and gradient)
 						<LockedLocationCardBox cardwidth={width} cardheight={height} elevation={5} >
-							<LocationCardButton cardwidth={width} cardheight={height} onClick={(e) =>
-								console.log('Location card Clicked')}>
+							<LocationCardButton cardwidth={width} cardheight={height}
+								onClick={(e) => console.log('Location card Clicked')}>
 								<LockIcon />
-								<LocationCardMedia cardwidth={width} cardheight={height} src={ImageSRC} />
+								<LocationCardMedia cardwidth={width} cardheight={height} src={imageURL} />
 							</LocationCardButton>
 						</LockedLocationCardBox>
 
@@ -43,7 +40,7 @@ const LocationCard = ({ width, height, }:  //<--- We are also going to recieve a
 						<LocationCardBox cardwidth={width} cardheight={height} elevation={5} >
 							<LocationCardButton cardwidth={width} cardheight={height}
 								onClick={(e) => console.log('Locationcard Clicked')}>
-								<LocationCardMedia cardwidth={width} cardheight={height} src={ImageSRC} />
+								<LocationCardMedia cardwidth={width} cardheight={height} src={imageURL} />
 							</LocationCardButton>
 						</LocationCardBox>
 					}
@@ -70,7 +67,7 @@ const LocationCard = ({ width, height, }:  //<--- We are also going to recieve a
 					{/* The clickable image */}
 					<LocationCardButton cardwidth={width} cardheight={height}
 						onClick={(e) => console.log('Locationcard Clicked')}>
-						<LocationCardMedia cardwidth={width} cardheight={height} src={ImageSRC} />
+						<LocationCardMedia cardwidth={width} cardheight={height} src={imageURL} />
 					</LocationCardButton>
 				</LocationCardBox>
 			}

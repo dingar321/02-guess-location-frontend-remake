@@ -1,5 +1,6 @@
 import { Box, Grid, styled, Typography } from '@mui/material'
 import React from 'react'
+import GuessCard from '../components/cards/guess/GuessCard'
 import LocationCard from '../components/cards/location/LocationCard'
 import HeroSection from '../components/hero/HeroSection'
 import Layout from '../components/layout/Layout'
@@ -8,7 +9,6 @@ import Layout from '../components/layout/Layout'
 const LocationCardsHeaderBox = styled(Box)({
 	textAlign: 'center',
 	itemAlign: 'center',
-	//width: '580px',
 	paddingTop: 750
 
 })
@@ -31,7 +31,7 @@ const Home = () => {
 			</LocationCardsHeaderBox>
 
 			{/* Paginated location cards */}
-			<LocationCard width={420} height={235} />
+			<GuessCard width={420} height={235} />
 
 		</Layout >
 	)

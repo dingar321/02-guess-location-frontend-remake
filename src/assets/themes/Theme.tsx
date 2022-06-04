@@ -9,6 +9,8 @@ declare module '@mui/material/Typography' {
 		body: true;
 		bodyB: true;
 		cap: true;
+		distance: true;
+		poppins: true;
 	}
 }
 
@@ -16,6 +18,8 @@ interface ExtendedTypographyOptions extends TypographyOptions {
 	body: React.CSSProperties;
 	bodyB: React.CSSProperties;
 	cap: React.CSSProperties;
+	distance: React.CSSProperties;
+	poppins: React.CSSProperties;
 }
 
 declare module "@mui/material/Button" {
@@ -51,6 +55,14 @@ const Theme = createTheme({
 			/* Dark */
 			main: secondaryColor
 		},
+
+		/*
+		Colors to add:
+		- green gradient
+		- orange gradeint
+		- default red
+		- orange (selected)
+		*/
 	},
 
 	/* Typography variants */
@@ -90,11 +102,25 @@ const Theme = createTheme({
 			fontWeight: 500,
 			fontSize: '16px'
 		},
-		/* caption */
+		/* Caption */
 		cap: {
 			fontWeight: 400,
 			fontSize: '12px'
+		},
+		/* Error distance */
+		distance: {
+			/* This style appears on the guess card's */
+			fontFamily: 'Poppins, sans-serif',
+			fontWeight: 700,
+			fontSize: '24px',
+		},
+		poppins: {
+			fontFamily: 'Poppins, sans-serif',
+			fontWeight: 400,
+			fontSize: '16px',
+			fontStyle: 'normal',
 		}
+
 	} as ExtendedTypographyOptions,
 
 	/* Button variants */
@@ -102,6 +128,11 @@ const Theme = createTheme({
 		MuiButtonBase: {
 			defaultProps: {
 				// No more ripple, on the whole application	
+				/*
+				------------------------------------------------------
+				 TODO: FIX RIPPLE STILL APEARS BY DEFAULT, IT SHOULD NOT
+				  ------------------------------------------------------
+				 */
 				disableRipple: true,
 			},
 		},

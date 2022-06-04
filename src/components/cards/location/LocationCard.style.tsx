@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { LockOutlined } from '@mui/icons-material';
-import { Box, Button, Card, Grid, IconButton, Typography } from '@mui/material';
+import { Box, Card, IconButton } from '@mui/material';
 
 const LockedLocationCardBox = styled(Card)(({ cardwidth, cardheight }:
 	{ cardwidth: number, cardheight: number }) => ({
