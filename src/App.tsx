@@ -3,12 +3,12 @@ import { Footer } from './components/footer/Footer';
 
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
-import Home from './pages/Home';
+import Location from './pages/LocationAdd';
 
 function App() {
 	return (
 		<div className="App">
-			<Home />
+			<Location />
 		</div >
 	);
 }

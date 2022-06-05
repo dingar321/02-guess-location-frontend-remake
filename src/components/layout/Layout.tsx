@@ -23,6 +23,7 @@ const AppBox = styled(Box)({
 
 const PageContainer = styled(Container)({
 
+
 	//It was 2 before
 	marginBottom: '5em',
 	//marginTop: '2em' <-- Not really needed
