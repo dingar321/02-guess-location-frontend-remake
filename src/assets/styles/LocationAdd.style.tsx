@@ -13,7 +13,7 @@ export default [
 		"elementType": "geometry.fill",
 		"stylers": [
 			{
-				"color": "#bbd5c5"
+				"color": "#619B8A"
 			}
 		]
 	},

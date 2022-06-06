@@ -1,9 +1,22 @@
-import styled from '@emotion/styled';
-import { Box } from '@mui/material';
+import { Autocomplete, Box, Hidden, styled, TextField } from '@mui/material';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react';
+import usePlacesAutocomplete from 'use-places-autocomplete';
 import LocationAddStyle from '../../assets/styles/LocationAdd.style';
-import Coordinate from '../../utils/types/Coordinate'
+import Coordinate from '../../utils/types/Coordinate';
+
+
+
+{/* 
+		//--------------------------------------------------------
+		TODO Move to a different location in components 
+		//--------------------------------------------------------
+		TODO:	IF AT 850PX MOVE THE AUTOCOMPLETE TEXTBOX ON THE BOTOOM
+		//--------------------------------------------------------
+		TODO:	ORGANIZE THE CODE FOR BETTER READABILITY
+*/}
+
 
 const MarkedLocationIcon = require('../../assets/icons/MarkedLocationIcon.png') as string;
 
@@ -16,7 +29,7 @@ const LocationAddMapBox = styled(Box)({
 
 const mapContainerStyle = {
 	width: '100%',
-	height: '650px'
+	height: '570px'
 }
 
 const center = {
@@ -25,11 +38,12 @@ const center = {
 }
 
 const googleMapsOptions = {
-	//styles: LocationAddStyle,
+	styles: LocationAddStyle,
 	streetViewControl: false,
 	mapTypeControl: false,
 	keyboardShortcuts: false,
-	restriction: { //<- Doesn't allow the user to see the grey border when zooming out
+	//Doesn't allow the user to see the grey border when zooming out
+	restriction: {
 		latLngBounds: { north: 85, south: -85, west: -180, east: 180 },
 		strictBounds: true,
 	},
@@ -39,28 +53,69 @@ const googleMapsOptions = {
 const label = {
 	text: 'Pictures location',
 	fontWeight: 'bold',
-	color: "#619B8A"
+	color: "white"
 }
 
+const AutoComplete = styled(Autocomplete)({
+	maxWidth: 700,
+
+	'& .MuiInputBase-input': {
+		height: 7,
+
+	},
+	background: 'white',
+	borderRadius: '2px',
+
+	paddingTop: 10, paddingRight: 10, paddingLeft: 500,
+
+});
 
 
+const AutoCompleteTextField = styled(TextField)({
+	'&:hover fieldset': {
+		borderColor: 'white',
+	},
+
+	'*.Mui-focused': {
+		borderColor: 'transparent',
+		outline: 'none',
+	},
+
+	background: 'white',
+	borderRadius: '2px',
+
+});
+
+const libraries = ["places"];
+
+//Component:
 const LocationAddMap = ({ coordinates, onClick }:
 	{ coordinates: Coordinate, onClick: any }) => {
 
+	//Location coordinates marker (For paning and zooming)
+	const [mapCoordinates, setMapCoordinates] = useState<Coordinate>(coordinates);
+	const [zoom, setzoom] = useState<number>(2);
+	const [locationName, setLocationName] = useState<string>('');
 
 	//Google api key
-	const { isLoaded, loadError } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string, });
+	const { isLoaded, loadError } = useLoadScript({
+		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string,
+		//@ts-ignore
+		libraries,
+	});
 
 	if (loadError) return <div>Error loading maps</div>;
 	if (!isLoaded) return <div>Loading maps</div>;
 
-
 	return (
 		<LocationAddMapBox>
-			<GoogleMap mapContainerStyle={mapContainerStyle} zoom={2} center={center} options={googleMapsOptions} onClick={onClick}>
+			<GoogleMap mapContainerStyle={mapContainerStyle} zoom={zoom}
+				center={mapCoordinates} options={googleMapsOptions} onClick={onClick}>
 
+				{/* Location search /w autocomplete */}
+				<Search />
 
-
+				{/* Location marker */}
 				{((coordinates.lat !== 0.000000 && coordinates.lng !== 0.000000)) &&
 					<Marker label={label} icon={{
 						labelOrigin: new window.google.maps.Point(15, -10),
@@ -74,6 +129,58 @@ const LocationAddMap = ({ coordinates, onClick }:
 	);
 
 
+
+
+	function Search() {
+		const { ready, value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutocomplete({
+			requestOptions: { //@ts-ignore
+				location: { lat: () => 0.000000, lng: () => 0.000000 },
+				radius: 200 * 1000,
+			},
+		});
+
+		return (
+			<AutoComplete
+				value={locationName}
+				onChange={async (event, value) => {
+					axios({
+						method: 'GET',
+						url: `https://maps.googleapis.com/maps/api/geocode/json?address=${value}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string}`,
+					}).then(async function (response) {
+						//@ts-ignore
+						setLocationName(value)
+						setValue(locationName, false);
+						clearSuggestions();
+
+						setMapCoordinates({
+							lat: response.data.results[0].geometry.location.lat,
+							lng: response.data.results[0].geometry.location.lng
+						});
+						value = value;
+						setzoom(15);
+					}).catch(error => {
+						console.error('Error: ', error);
+					});
+				}}
+				disablePortal
+				id="combo-box-demo"
+				options={
+					data.map(item => {
+						return item.description;
+					})
+				}
+				renderInput={(params) =>
+					<AutoCompleteTextField variant='outlined'
+						style={{}} {...params} placeholder="Enter picture location"
+						value={value} onChange={(e) => setValue(e.target.value)}
+						disabled={!ready}
+					/>
+
+				}
+			/>
+		);
+	}
 }
 
 export default LocationAddMap
+

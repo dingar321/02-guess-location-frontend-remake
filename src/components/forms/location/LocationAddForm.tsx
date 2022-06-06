@@ -1,26 +1,11 @@
 import { ExpandMore } from '@mui/icons-material';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, IconButton, styled, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, styled, Typography } from '@mui/material';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Coordinate from '../../../utils/types/Coordinate';
 import LocationAddMap from '../../maps/LocationAddMap';
-
 import ImageUpload from '../../upload/ImageUpload';
-
-
-const AccordionBox = styled(Accordion)({
-	maxWidth: '420px',
-	marginTop: '1em',
-
-
-	'&.Mui-expanded': {
-		Maxheight: '335px',
-		background: 'rgba(255, 255, 255, 1)',
-		//opacity: 0.6,
-	},
-
-});
-
-
+import { AccordianContainerBox, AccordionBox, GreenSpan, MapContainerBox, SubmitButton } from './LocationAddForm.style';
 
 const LocationAddForm = () => {
 
@@ -29,12 +14,32 @@ const LocationAddForm = () => {
 	const [uploadedImagePath, setUploadedImagePath] = useState<string>('')
 	const [uploadedImageName, setUploadedImageName] = useState<string>('')
 
-	//Location coordinates marker
+	//Location coordinates marker 
 	const [coordinates, setCoordinates] = useState<Coordinate>({ lat: 0.000000, lng: 0.000000 });
 	const [cordChanged, setChordChanged] = useState<boolean>(false);
 
+	//Chosen location name
+	const [locationName, setLocationName] = useState<string>('');
+
+	//setting location after selecting a location on the map
+	useEffect(() => {
+		if (cordChanged) {
+			setChordChanged(false);
+			axios({
+				method: 'GET',
+				url: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coordinates.lat},${coordinates.lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string}`,
+			}).then(async function (response) {
+				//Getting the location name
+				setLocationName(response.data.results[2].formatted_address);
+			}).catch(error => {
+				setLocationName('Unknown');
+				console.error('Error: ', error);
+			});
+		}
+	}, [cordChanged])
+
+	//Picture upload
 	const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		//Picture upload
 		if (!e.target.files) {
 			return;
 		} else {
@@ -45,14 +50,32 @@ const LocationAddForm = () => {
 		}
 	}
 
+	//Handle submit
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+
+		//check if data exists !
+		// - image is uploaded
+		// - location is selected
+		//error otherwise
+
+		console.log('Picture: ', image);
+		console.log('Lat: ', coordinates.lat);
+		console.log('Lng: ', coordinates.lng);
+		console.log('Location: ', locationName);
+	}
+
 	return (
-		<Box>
-			<Box style={{ position: 'absolute', zIndex: 2, marginTop: '40px', marginLeft: '20px', marginRight: '20px', }}>
+		<Box component="form" noValidate={true} onSubmit={handleSubmit}>
+			<Typography style={{ paddingBottom: 20, }} variant='h4' color='secondary'>
+				Add a new <GreenSpan>location</GreenSpan>
+			</Typography>
+			<AccordianContainerBox>
 				{/* Accordian with location picture */}
 				<AccordionBox elevation={2}>
 					<AccordionSummary expandIcon={<ExpandMore />}>
 						<Typography variant='h5' color='secondary'>
-							Add a new <span style={{ color: '#619B8A' }}>location</span>
+							Uploade picture
 						</Typography>
 					</AccordionSummary>
 					<AccordionDetails style={{ maxHeight: '335px' }}>
@@ -62,25 +85,35 @@ const LocationAddForm = () => {
 							onChange={handleChange} onClick={null} />
 					</AccordionDetails>
 				</AccordionBox>
-			</Box>
+			</AccordianContainerBox>
 
-			<Box>
+			<MapContainerBox>
 				{/* Google maps */}
 				<LocationAddMap coordinates={coordinates} onClick={(e: any) => {
 					setCoordinates({ lat: e.latLng?.lat() as number, lng: e.latLng?.lng() as number });
 					setChordChanged(true);
 				}} />
-			</Box>
+			</MapContainerBox>
 
+			<Typography>
+				<GreenSpan>Selected location: </GreenSpan>
+				{locationName}
+			</Typography>
 
+			<SubmitButton>
+				<Button type='submit' disableRipple variant='contained' color='primary'>
+					ADD LOCATION
+				</Button>
+			</SubmitButton>
 		</Box>
 	);
 }
 
 export default LocationAddForm
+
+
 /*
 ---------------------------------------
 TODO: When resizing window the accoridan size needs to also resize
 ---------------------------------------
-TODO:  Maybe remove th background from the accordian ????!?!?!? 
 */
