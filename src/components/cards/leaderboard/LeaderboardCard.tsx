@@ -16,8 +16,8 @@ const LeaderboardCard = ({ width, height, rank }:  //<--- We are also going to r
 	const userProfileImage = 'https://image.shutterstock.com/image-photo/young-man-checking-his-sports-600w-1373615606.jpg';
 
 	return (
-		<LeaderboardCardBox cardwidth={width} cardheight={height} elevation={5}
-			sx={{ display: 'grid', gridTemplateColumns: '0.3fr 0.3fr 1fr 120px' }}>
+		<LeaderboardCardBox cardwidth={width} cardheight={height} elevation={0}
+			sx={{ display: 'grid', gridTemplateColumns: '50px 50px auto 70px', paddingRight: '5px' }}>
 
 			<RankGrid>
 				{(rank === 1) &&
@@ -64,10 +64,10 @@ const LeaderboardCard = ({ width, height, rank }:  //<--- We are also going to r
 					Elmer Laverty <br /> 2. 4. 2012
 				</Typography>
 			</UserInfoGrid>
-			<ErrorDistanceGrid >
+			<ErrorDistanceGrid>
 				<Typography variant='body' color='primary'
 					sx={{ float: 'right' }}>
-					3021 km
+					111 km
 				</Typography>
 			</ErrorDistanceGrid>
 		</LeaderboardCardBox >

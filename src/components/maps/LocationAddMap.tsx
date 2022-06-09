@@ -42,6 +42,7 @@ const googleMapsOptions = {
 	streetViewControl: false,
 	mapTypeControl: false,
 	keyboardShortcuts: false,
+	fullscreenControl: false,
 	//Doesn't allow the user to see the grey border when zooming out
 	restriction: {
 		latLngBounds: { north: 85, south: -85, west: -180, east: 180 },
@@ -56,19 +57,29 @@ const label = {
 	color: "white"
 }
 
+
 const AutoComplete = styled(Autocomplete)({
-	maxWidth: 700,
+
+	maxWidth: 300,
 
 	'& .MuiInputBase-input': {
 		height: 7,
-
+		background: 'white',
+		borderRadius: '2px',
 	},
-	background: 'white',
-	borderRadius: '2px',
-
-	paddingTop: 10, paddingRight: 10, paddingLeft: 500,
 
 });
+
+const AutoCompleteSMBox = styled(Box)({
+	paddingTop: 70,
+	paddingLeft: 20,
+})
+
+const AutoCompleteDefBox = styled(Box)({
+	paddingTop: 10,
+	paddingLeft: 500,
+})
+
 
 
 const AutoCompleteTextField = styled(TextField)({
@@ -113,7 +124,13 @@ const LocationAddMap = ({ coordinates, onClick }:
 				center={mapCoordinates} options={googleMapsOptions} onClick={onClick}>
 
 				{/* Location search /w autocomplete */}
-				<Search />
+				<AutoCompleteDefBox sx={{ display: { xs: 'none', lg: 'block' } }}>
+					<Search />
+				</AutoCompleteDefBox>
+
+				<AutoCompleteSMBox sx={{ display: { xs: 'block', lg: 'none' } }}>
+					<Search />
+				</AutoCompleteSMBox>
 
 				{/* Location marker */}
 				{((coordinates.lat !== 0.000000 && coordinates.lng !== 0.000000)) &&
@@ -127,8 +144,6 @@ const LocationAddMap = ({ coordinates, onClick }:
 			</GoogleMap>
 		</LocationAddMapBox>
 	);
-
-
 
 
 	function Search() {

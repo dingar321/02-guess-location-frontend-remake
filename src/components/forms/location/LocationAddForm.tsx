@@ -70,6 +70,7 @@ const LocationAddForm = () => {
 			<Typography style={{ paddingBottom: 20, }} variant='h4' color='secondary'>
 				Add a new <GreenSpan>location</GreenSpan>
 			</Typography>
+
 			<AccordianContainerBox>
 				{/* Accordian with location picture */}
 				<AccordionBox elevation={2}>
@@ -80,7 +81,7 @@ const LocationAddForm = () => {
 					</AccordionSummary>
 					<AccordionDetails style={{ maxHeight: '335px' }}>
 						<Divider />
-						{/* Are where we are gonna place the image upload */}
+						{/* Image upload */}
 						<ImageUpload uploadedImageName={uploadedImageName} uploadedImagePath={uploadedImagePath}
 							onChange={handleChange} onClick={null} />
 					</AccordionDetails>
@@ -115,5 +116,9 @@ export default LocationAddForm
 /*
 ---------------------------------------
 TODO: When resizing window the accoridan size needs to also resize
+---------------------------------------
+
+TODO: ACCORDIAN AS A RESPECTIVE COMPONENT (expanded=true) //OPEN BY DEFAULT
+	ADD ON CLIKC TO CLOSE AND OPEN 
 ---------------------------------------
 */

@@ -3,9 +3,11 @@ import { Box, Card, Grid, Typography } from '@mui/material';
 
 const LeaderboardCardBox = styled(Card)(({ cardwidth, cardheight }:
 	{ cardwidth: number, cardheight: number }) => ({
-		width: cardwidth,
+		maxWidth: cardwidth,
+		minWidth: '300px',
 		height: cardheight,
 		borderRadius: '4px',
+		marginBottom: 10.5,
 
 		//background: 'red', //<-- Testing
 	}));
@@ -22,22 +24,33 @@ const RankGrid = styled(Grid)({
 	textAlign: 'center',
 	paddingLeft: '10px',
 	paddingRight: '10px',
-	paddingTop: '16%'
+	paddingTop: '16%',
+
+
+	//background: 'green', //<-- Testing
 });
 
 const ProfileGrid = styled(Grid)({
 	paddingTop: '5px',
 	paddingLeft: '8px',
+
+
+	//background: 'purple', //<-- Testing
 });
 
 const UserInfoGrid = styled(Grid)({
 	paddingTop: '5px',
 	paddingLeft: '6px',
+	minWidth: '130px',
+
+	//	background: 'yellow', //<-- Testing
 });
 
 const ErrorDistanceGrid = styled(Grid)({
 	paddingTop: '15px',
-	paddingRight: '5px'
+	paddingRight: '5px',
+
+	//background: 'yellow', //<-- Testing
 });
 
 

@@ -186,7 +186,7 @@ const Theme = createTheme({
 	breakpoints: {
 		values: {
 			xs: 0,
-			sm: 0,
+			sm: 600,
 			md: 1000,
 			lg: 1200,
 			xl: 1500,
@@ -200,7 +200,7 @@ export default Theme;
 
 /*
 //INSTRUCTIONS ON HOW TO USE:
-The whole application has a theme. That means we have 2 colors, 8 typography styles and 3 distinct buttns.
+The whole application has a theme. That means we have 2 colors, 8 typography styles and 3 distinct buttons.
 To use the typography and button styles use the respective component and specify the variant.
 If we want to use their colors we only have to add (color: 'palette') to the component to specify which. 
 */
